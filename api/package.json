@@ -25,7 +25,9 @@
     "@adonisjs/ignitor": "^2.0.6",
     "@adonisjs/lucid": "^5.0.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mysql": "^2.16.0"
+  },
   "autoload": {
     "App": "./app"
   }
