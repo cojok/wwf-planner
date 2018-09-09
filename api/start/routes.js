@@ -15,16 +15,20 @@
 
 const Route = use('Route')
 
-/**
+Route.group(() => { 
+
+  /**
  * Breakfast routes
  */
 Route.get('breakfasts', 'BreakfastController.index')
 Route.get('breakfast/:id', 'BreakfastController.getBreakfast')
 Route.post('breakfast', 'BreakfastController.save')
-Route.post('breakfast/:id', 'BreakfastController.update')
+// Route.post('breakfast/:id', 'BreakfastController.update')
 
 /**
  * Products routes
  */
- Route.get('products', 'ProductController.index')
- Route.post('products', 'ProductController.save')
+ Route.get('invite', 'InviteController.index')
+ Route.post('invite', 'InviteController.save')
+
+ }).prefix('api/v1')

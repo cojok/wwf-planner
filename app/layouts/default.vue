@@ -1,53 +1,67 @@
 <template>
-  <div>
-    <nuxt/>
-  </div>
+  <v-app dark>
+    <v-navigation-drawer
+      :mini-variant.sync="miniVariant"
+      :clipped="clipped"
+      v-model="drawer"
+      fixed
+      app
+    >
+      <v-list>
+        <v-list-tile
+          router
+          :to="item.to"
+          :key="i"
+          v-for="(item, i) in items"
+          exact
+        >
+          <v-list-tile-action>
+            <v-icon v-html="item.icon"></v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title v-text="item.title"></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+    <v-toolbar fixed app :clipped-left="clipped">
+      <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
+      <v-btn
+        icon
+        @click.stop="miniVariant = !miniVariant"
+      >
+        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
+      </v-btn>
+      <v-toolbar-title v-text="title"></v-toolbar-title>
+    </v-toolbar>
+    <v-content>
+      <v-container>
+        <nuxt />
+      </v-container>
+    </v-content>
+    <v-footer :fixed="fixed" app>
+      <span>&copy; {{ copyright }}</span>
+    </v-footer>
+  </v-app>
 </template>
 
-<style>
-html {
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+<script>
+import { mapGetters } from 'vuex'
+export default {
+  data () {
+    return {
+      clipped: true,
+      drawer: false,
+      fixed: true,
+      miniVariant: true,
+      copyright: (new Date()).getFullYear()
+    }
+  },
+  computed: {
+    ...mapGetters({
+      items: 'getMenuItems',
+      title: 'getTitle'
+    })
+  }
 }
-
-*, *:before, *:after {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
-</style>
-
+</script>
