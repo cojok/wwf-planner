@@ -33,32 +33,6 @@ class BreakfastController {
    }
 
    /**
-   * Get breakfast
-   */
-
-  async getBreakfast ({ request, params, response }) {
-    try {
-     
-     const id = params.id 
-     const breakfast = await Breakfast.findOrFail(id)
-
-     return response.json({
-       status: 'success',
-       body: breakfast,
-       message: 'Breakfast retrieve'
-
-     })
-      
-    } catch (error) {
-      return response.status(400).json({
-        status: 'error',
-        body: error,
-        message: 'No breakfast found!'
-      })
-    }
-  }
-
-   /**
     * Add breakfast
     */
 
