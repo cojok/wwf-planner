@@ -31,7 +31,7 @@ $ adonis migration:run
 $ adonis serve --dev
 ```
 # Nuxt Vuejs SSR 
-####In order to start the front end please make sure to run the following commands:
+#### In order to start the front end please make sure to run the following commands:
 ``` bash
 $ cd app && npm i
 ```
