@@ -13,7 +13,8 @@ import {
   VForm,
   VTextField,
   VDatePicker,
-  VTimePicker
+  VTimePicker,
+  VSnackbar
 } from 'vuetify'
 
 Vue.use(Vuetify, {
@@ -30,6 +31,7 @@ Vue.use(Vuetify, {
     VForm,
     VTextField,
     VDatePicker,
-    VTimePicker
+    VTimePicker,
+    VSnackbar
   }
 })

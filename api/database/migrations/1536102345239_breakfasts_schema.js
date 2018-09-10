@@ -6,8 +6,7 @@ class BreakfastsSchema extends Schema {
   up () {
     this.create('breakfasts', (table) => {
       table.increments()
-      table.date('date').notNullable()
-      table.date('time').notNullable()
+      table.datetime('date').notNullable().unique()
       table.timestamps()
     })
   }

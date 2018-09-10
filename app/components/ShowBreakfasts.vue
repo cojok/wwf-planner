@@ -1,12 +1,7 @@
 <template>
   <v-layout column justify-center align-center>
-    <ShowBreakfasts></ShowBreakfasts>
-    <!-- <v-flex xs12 sm8 md6>
-      <div class="text-xs-center">
-       <h1> Dashboard </h1>
-      </div>
-      <v-card>
-        <v-card-title class="headline">Welcome to the Vuetify + Nuxt.js template</v-card-title>
+      <v-card v-for="breakfast in breakfasts" :key="breakfast.id">
+        <v-card-title class="headline">{{ breakfast.date | dateformat }}</v-card-title>
         <v-card-text>
           <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
           <p>For more information on Vuetify, check out the <a href="https://vuetifyjs.com" target="_blank">documentation</a>.</p>
@@ -25,15 +20,30 @@
           <v-spacer></v-spacer>
           <v-btn color="primary" flat nuxt to="/inspire">Continue</v-btn>
         </v-card-actions>
-      </v-card> -->
-    </v-flex>
+      </v-card>
   </v-layout>
 </template>
+
 <script>
-  import ShowBreakfasts from '~/components/ShowBreakfasts.vue'
+  import { mapActions, mapGetters } from 'vuex'
+
   export default {
-    components: {
-      ShowBreakfasts
+    computed: {
+      ...mapGetters({
+        breakfasts: 'getBreakfasts'
+      })
+    },
+    methods: {
+      ...mapActions([
+        'breakfast'
+      ])
+    },
+    mounted () {
+      this.breakfast()
     }
   }
 </script>
+
+<style scoped>
+
+</style>

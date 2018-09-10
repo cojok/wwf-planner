@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "moment": "^2.22.2",
     "nuxt": "^1.0.0",
     "vuetify": "^1.0.0"
   },
