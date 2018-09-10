@@ -42,11 +42,31 @@
     <v-footer :fixed="fixed" app>
       <span>&copy; {{ copyright }}</span>
     </v-footer>
+    <v-snackbar
+      v-model="snackbar.show"
+      :bottom="y === 'bottom'"
+      :left="x === 'left'"
+      :multi-line="mode === 'multi-line'"
+      :right="x === 'right'"
+      :timeout="snackbar.timeout"
+      :top="y === 'top'"
+      :vertical="mode === 'vertical'"
+      :color="snackbar.color"
+    >
+      {{ snackbar.text }}
+      <v-btn
+        dark
+        flat
+        @click="hideSnackbar"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
   </v-app>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -54,14 +74,32 @@ export default {
       drawer: false,
       fixed: true,
       miniVariant: true,
-      copyright: (new Date()).getFullYear()
+      copyright: (new Date()).getFullYear(),
+      y: 'top',
+      x: null,
+      mode: 'multi-line'
     }
   },
   computed: {
     ...mapGetters({
       items: 'getMenuItems',
-      title: 'getTitle'
+      title: 'getTitle',
+      snackbar: 'getSnackbar'
     })
+  },
+  methods: {
+    ...mapActions([
+      'setSnackbar'
+    ]),
+    hideSnackbar () {
+      const data = {
+        show: false,
+        color: '',
+        text: '',
+        timeout: 0
+      }
+      this.setSnackbar(data)
+    }
   }
 }
 </script>

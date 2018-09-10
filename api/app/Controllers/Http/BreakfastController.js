@@ -1,7 +1,7 @@
 'use strict'
 
 const Breakfast = use('App/Models/Breakfast')
-const Invite = use('App/Models/Invite')
+const Registration = use('App/Models/Registration')
 
 class BreakfastController {
 
@@ -12,7 +12,9 @@ class BreakfastController {
    async index ({ request, response }) {
      try {
 
-      const breakfasts = await Breakfast.all()
+      const breakfasts = await Breakfast.query()
+      .with('registration')
+      .fetch()
 
       return response.json({
         status: 'success',
@@ -34,7 +36,7 @@ class BreakfastController {
    * Get breakfast
    */
 
-  async getBReakfast ({ request, params, response }) {
+  async getBreakfast ({ request, params, response }) {
     try {
      
      const id = params.id 

@@ -24,11 +24,6 @@ Route.get('breakfasts', 'BreakfastController.index')
 Route.get('breakfast/:id', 'BreakfastController.getBreakfast')
 Route.post('breakfast', 'BreakfastController.save')
 // Route.post('breakfast/:id', 'BreakfastController.update')
-
-/**
- * Products routes
- */
- Route.get('invite', 'InviteController.index')
- Route.post('invite', 'InviteController.save')
+ Route.post('breakfast/attend', 'RegistrationController.save')
 
  }).prefix('api/v1')

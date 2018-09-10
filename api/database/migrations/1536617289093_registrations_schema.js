@@ -2,12 +2,12 @@
 
 const Schema = use('Schema')
 
-class InvitesSchema extends Schema {
+class RegistrationsSchema extends Schema {
   up () {
-    this.create('invites', (table) => {
+    this.create('registrations', (table) => {
       table.increments()
       table.string('name').notNullable()
-      table.string('email').notNullable().unique()
+      table.string('email').notNullable()
       table.integer('quantity').notNullable()
       table.integer('breakfast_id').unsigned().notNullable()
       table.timestamps()
@@ -15,8 +15,8 @@ class InvitesSchema extends Schema {
   }
 
   down () {
-    this.drop('invites')
+    this.drop('registrations')
   }
 }
 
-module.exports = InvitesSchema
+module.exports = RegistrationsSchema
